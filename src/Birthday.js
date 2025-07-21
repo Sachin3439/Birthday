@@ -8,26 +8,48 @@ function Birthday() {
   const [showFireworks, setShowFireworks] = useState(false);
   const audioRef = useRef(null);
 
+  // Preload data from localStorage
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('birthdayData'));
     if (stored) setData(stored);
   }, []);
 
+  // Preload and decode audio early to avoid lag
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }).catch(() => {});
+    }
+  }, []);
+
+  // Handle flip and fireworks
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    setIsFlipped(prev => !prev);
     setShowFireworks(true);
-    if (audioRef.current) audioRef.current.play();
-    setTimeout(() => setShowFireworks(false), 3000);
+
+    // Reset and play audio smoothly
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch(() => {});
+    }
+
+    setTimeout(() => setShowFireworks(false), 2000); // fireworks for 2 sec
   };
 
+  // Pause audio when tab hidden
   useEffect(() => {
     const handleVisibility = () => {
       if (document.hidden) {
         audioRef.current?.pause();
-      } else {
-        if (isFlipped) audioRef.current?.play();
+      } else if (isFlipped) {
+        audioRef.current?.play().catch(() => {});
       }
     };
+
     document.addEventListener('visibilitychange', handleVisibility);
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, [isFlipped]);
