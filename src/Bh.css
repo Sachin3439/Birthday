@@ -1,0 +1,173 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.x{
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #ffcce6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  max-width: 900px;
+  width: 95%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.birthday-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: cardEnter 1s ease-out;
+}
+
+@keyframes cardEnter {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.cake-image {
+  width: 200px;
+  height: 200px;
+  margin: 1rem auto;
+  background-color: #ff88b5;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.cake-image img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.birthday-message {
+  font-size: 2.5rem;
+  color: #d40f7d;
+  margin: 1rem 0;
+  font-weight: bold;
+  min-height: 100px;
+}
+
+.typing-text {
+  border-right: 3px solid #d40f7d;
+  animation: blinkCursor 0.75s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes blinkCursor {
+  from, to { border-color: transparent; }
+  50% { border-color: #d40f7d; }
+}
+
+.action-button {
+  background: linear-gradient(45deg, #ff1493, #ff69b4);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+  animation: pulse 2s infinite;
+}
+
+.action-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.balloon {
+  position: absolute;
+  background: #f0f;
+  border-radius: 50%;
+  animation: float 8s ease-in infinite;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #f00;
+  opacity: 0;
+  animation: confettiFall 5s linear infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .birthday-message {
+    font-size: 1.8rem;
+  }
+  
+  .cake-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .birthday-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .birthday-message {
+    font-size: 1.5rem;
+    min-height: 150px;
+    white-space: normal;
+  }
+  
+  .action-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}

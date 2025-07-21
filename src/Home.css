@@ -1,0 +1,130 @@
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+  background-size: 400% 400%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: gradientAnimation 15s ease infinite;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes gradientAnimation {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-heading {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.input-field, .textarea, .file-input {
+  width: 300px;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  font-size: 16px;
+}
+
+.textarea {
+  height: 100px;
+  resize: none;
+}
+
+.image-preview {
+  width: 200px;
+  border-radius: 15px;
+  margin: 15px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.generate-button {
+  background: linear-gradient(to right, #fc466b, #3f5efb);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  margin-top: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: glow 2s infinite alternate;
+}
+
+.generate-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #fc466b, 0 0 30px #3f5efb;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px #fc466b; }
+  to { box-shadow: 0 0 20px #fc466b, 0 0 40px #3f5efb; }
+}
+
+.link-box {
+  margin-top: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  width: 320px;
+}
+
+.link-input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 480px) {
+  .home-container {
+    padding: 15px;
+  }
+
+  .animated-heading {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .input-field, .textarea, .file-input {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .textarea {
+    height: 80px;
+  }
+
+  .image-preview {
+    width: 150px;
+  }
+
+  .generate-button {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+
+  .link-box {
+    width: 90%;
+    font-size: 14px;
+  }
+}
