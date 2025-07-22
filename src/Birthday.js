@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import song from './birthday-song.mp3';
 import './Birthday.css';
 
@@ -7,14 +8,13 @@ function Birthday() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showFireworks, setShowFireworks] = useState(false);
   const audioRef = useRef(null);
+  const { id } = useParams();
 
-  // Preload data from localStorage
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('birthdayData'));
-    if (stored) setData(stored);
-  }, []);
+    const storedData = JSON.parse(localStorage.getItem(`birthdayData-${id}`));
+    if (storedData) setData(storedData);
+  }, [id]);
 
-  // Preload and decode audio early to avoid lag
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
@@ -25,22 +25,19 @@ function Birthday() {
     }
   }, []);
 
-  // Handle flip and fireworks
   const handleFlip = () => {
     setIsFlipped(prev => !prev);
     setShowFireworks(true);
 
-    // Reset and play audio smoothly
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(() => {});
     }
 
-    setTimeout(() => setShowFireworks(false), 2000); // fireworks for 2 sec
+    setTimeout(() => setShowFireworks(false), 2000);
   };
 
-  // Pause audio when tab hidden
   useEffect(() => {
     const handleVisibility = () => {
       if (document.hidden) {
@@ -49,7 +46,6 @@ function Birthday() {
         audioRef.current?.play().catch(() => {});
       }
     };
-
     document.addEventListener('visibilitychange', handleVisibility);
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, [isFlipped]);
@@ -57,12 +53,6 @@ function Birthday() {
   return (
     <div className="birthday-bg">
       <h1 className="animated-heading">🎉 Happy Birthday 🎉</h1>
-
-      <div className="balloon-container">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div key={i} className={`balloon balloon-${i + 1}`}></div>
-        ))}
-      </div>
 
       {showFireworks && (
         <div className="fireworks">
