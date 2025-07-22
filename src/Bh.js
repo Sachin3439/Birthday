@@ -1,6 +1,6 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import './Bh.css';
 
 const messages = [
@@ -12,6 +12,7 @@ const messages = [
 
 
 function App() {
+  const { id } = useParams();
   const [showConfetti, setShowConfetti] = useState(false);
   const [showBalloons, setShowBalloons] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
@@ -130,7 +131,7 @@ function App() {
   const handleButtonClick = () => {
     setShowConfetti(true);
     setShowBalloons(true);
-     navigate('/birthday')
+     navigate(`/birthday/${id}`);
     setTimeout(() => {
       setShowConfetti(false);
       setShowBalloons(false);
