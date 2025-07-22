@@ -4,7 +4,7 @@
 .birthday-bg {
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,84 +25,6 @@
   }
 }
 
-/* Balloons */
-.balloon-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.balloon {
-  position: absolute;
-  width: 40px;
-  height: 60px;
-  opacity: 0.9;
-  animation: floatUp linear infinite;
-}
-
-.balloon::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  width: 2px;
-  height: 15px;
-  background: #444;
-}
-
-.balloon-1, .balloon-2, .balloon-3 {
-  background: #ff6b6b;
-  border-radius: 50%;
-}
-
-.balloon-4, .balloon-5 {
-  background: #f8c291;
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-}
-
-.balloon-6, .balloon-7 {
-  background: #54a0ff;
-  width: 30px;
-  height: 50px;
-  border-radius: 45% 45% 50% 50%;
-}
-
-.balloon-8, .balloon-9 {
-  background: #00d2d3;
-}
-
-.balloon-10, .balloon-11, .balloon-12 {
-  background: #ff9ff3;
-}
-
-.balloon-1 { left: 5%; animation-duration: 14s; animation-delay: 1s; }
-.balloon-2 { left: 15%; animation-duration: 13s; animation-delay: 2s; }
-.balloon-3 { left: 25%; animation-duration: 12s; animation-delay: 3s; }
-.balloon-4 { left: 35%; animation-duration: 15s; animation-delay: 4s; }
-.balloon-5 { left: 45%; animation-duration: 16s; animation-delay: 5s; }
-.balloon-6 { left: 55%; animation-duration: 13s; animation-delay: 6s; }
-.balloon-7 { left: 65%; animation-duration: 14s; animation-delay: 7s; }
-.balloon-8 { left: 75%; animation-duration: 12s; animation-delay: 8s; }
-.balloon-9 { left: 85%; animation-duration: 11s; animation-delay: 9s; }
-.balloon-10 { left: 20%; animation-duration: 15s; animation-delay: 10s; }
-.balloon-11 { left: 40%; animation-duration: 14s; animation-delay: 11s; }
-.balloon-12 { left: 60%; animation-duration: 13s; animation-delay: 12s; }
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-  }
-  50% {
-    transform: translateY(40vh) rotate(15deg);
-  }
-  100% {
-    transform: translateY(-200px) rotate(-15deg);
-    opacity: 0;
-  }
-}
 
 /* Fireworks */
 .fireworks {
